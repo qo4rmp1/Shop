@@ -1,0 +1,82 @@
+﻿@model ECApplication.Models.Comment
+
+@{ 
+	var ajaxOption_Post = new AjaxOptions
+	{
+		OnSuccess = "EditCommentSuccess",
+		OnFailure = "EditCommentFailure",
+		HttpMethod = "POST"
+	};
+}
+
+<script>
+	function EditCommentSuccess() {
+
+	}
+
+	function EditCommentFailure(xhr) {
+		alert(xhr.status);
+	}
+</script>
+
+@using (Ajax.BeginForm("Edit", "Comments", ajaxOption_Post))
+{
+	@Html.AntiForgeryToken()
+
+<tr id="Tr_Row">
+	@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+	@Html.HiddenFor(model => model.Id)
+	@Html.HiddenFor(model => model.ProductId)
+	<td>
+		@Html.EditorFor(model => model.Content)
+	</td>
+	<td>
+		@Html.Label(DateTime.Now.ToString("yyyy-MM-dd HH:mm"))
+	</td>
+	<td>
+		@Html.EditorFor(model => model.Star)
+	</td>
+	<td>
+		@*@Html.DisplayFor(model => model.UserName)*@
+	</td>
+	<td>
+		<input type="submit" value="修改" class="btn btn-default" />
+		<input type="button" value="取消" onclick="@Url.Action("Detail", "Products", new { productId = Model.ProductId })" class="btn btn-default" />
+	</td>
+</tr>
+}
+@*@using (Html.BeginForm("Edit", "Comments", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Comment</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+		@Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.ProductId)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Content, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Content, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Star, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Star, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Star, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="修改" class="btn btn-default" />
+				<input type="button" value="取消" onclick="@Url.Action("Detail", "Products", new { productId = Model.ProductId })" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}*@

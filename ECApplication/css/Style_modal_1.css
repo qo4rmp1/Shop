@@ -1,0 +1,111 @@
+﻿/*-- index-modal --*/ 
+.agileits-modal .modal-dialog {
+    margin-top: 7%;
+}
+.agileits-modal .modal-content {
+    padding: 2em;
+}
+.agileits-modal .close {
+    outline: none;
+}
+.agileits-modal h4 {
+    color: #F44336;
+    font-family: 'Offside', cursive; 
+	 font-size: 1.8em;
+} 
+.agileits-modal h5 {
+    font-size: 1em;
+    color: #999;
+    margin: 1em 0 1.5em;
+    font-weight: 200;
+}
+.agileits-modal select.form-control.bfh-states {
+    box-shadow: none;
+    font-size: 1em;
+    color: #999;
+    outline: none;
+    padding: .6em 1em;
+    height: 40px;
+	border-radius: 0;
+}
+.agileits-modal input[type="text"] {
+    width: 100%;
+    color: #999;  
+    outline: none;
+    font-size: 1em;
+    padding: .7em 1em;
+    margin: 1.5em 0;
+    border: solid 1px #ccc;
+    -webkit-appearance: none;
+    display:block;
+}
+.agileits-modal .close2 {
+    background: #0280e1;
+    border: none;
+    padding: .8em 2em;
+    color: #fff;
+    font-size: 1em;
+    outline: none;
+}
+/*-- //index-modal --*/
+
+@media(max-width:736px) {
+	.agileits-modal .modal-content {
+		padding: 1em;
+	}
+
+	.agileits-modal .modal-content {
+		padding: 1em;
+		width: 75%;
+		margin: 0 auto;
+	}
+}
+
+@media(max-width:640px) {
+	.agileits-modal .close2 {
+		padding: .6em 2em;
+	}
+}
+@media(max-width:480px) {
+	.agileits-modal h4 {
+		font-size: 1.5em;
+	}
+
+	.agileits-modal .modal-content {
+		width: 85%;
+	}
+
+	.agileits-modal .close2 {
+		font-size: 0.9em;
+	}
+
+	.agileits-modal h5 {
+		margin: 0 0 1em;
+	}
+.agileits-modal select.form-control.bfh-states,.agileits-modal input[type="text"]{ 
+    font-size: 0.9em; 
+}
+}
+
+@media(max-width:414px) {
+	.agileits-modal .modal-content {
+		width: 90%;
+	}
+
+	.agileits-modal h4 {
+		font-size: 1.3em;
+	}
+
+	.agileits-modal select.form-control.bfh-states {
+		height: 35px;
+	}
+
+	.agileits-modal input[type="text"] {
+		margin: 0.8em 0;
+	}
+}
+@media(max-width:320px) {
+.agileits-modal .modal-content {
+    width: 95%;
+}
+}

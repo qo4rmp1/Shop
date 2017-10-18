@@ -1,0 +1,17 @@
+﻿@model List<ECApplication.Models.ProductCategory>
+
+@{
+	var area = "";
+
+	if (User.IsInRole("Admin"))
+	{
+		area = "back";
+	}
+
+	foreach (var item in Model)
+	{
+	<li><a href="@Url.Action("Index", "Products", new { area = area, categoryId = item.Id })" class="act">@(item.Name)</a></li>
+	}
+}
+
+

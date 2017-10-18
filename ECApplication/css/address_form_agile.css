@@ -1,0 +1,299 @@
+﻿.checkout-right h4, .address_form_agile h4 {
+	text-transform: uppercase;
+	color: #212121;
+	font-size: 1.5em;
+	margin-bottom: 1.5em;
+}
+
+.address_form_agile h4 {
+	font-size: 1.2em;
+}
+.address_form_agile {
+	float: right;
+}
+
+@media (max-width: 991px) {
+	.address_form_agile {
+		float: right;
+		width: 100%;
+	}
+
+		.checkout-right h4, .address_form_agile h4 {
+			font-size: 1.2em;
+		}
+}
+@media (max-width: 640px) {button.submit.check_out {
+		display: block;
+		position: relative;
+		padding: 11px 14px;
+		letter-spacing: 1px;
+		font-size: 0.9em;
+	}
+}
+
+@media (max-width: 568px) {
+	.checkout-right h4, .address_form_agile h4 {
+		font-size: 1em;
+		line-height: 1.7em;
+	}
+
+	.checkout-left-basket h4 {
+		padding: 0.9em;
+		font-size: 1em;
+	}
+}
+
+/*--/payment--*/
+/*-- Pay-page --*/
+
+.agileits_w3layouts_tab2 input[type="email"], .agileits_w3layouts_tab2 input[type="password"], .creditly-wrapper .form-control {
+	display: block;
+	width: 95.5%;
+	padding: 15px 10px;
+	font-size: 14px;
+	color: #212121;
+	background: #fff;
+	border: 1px solid #e7e7e7;
+	margin-bottom: 25px;
+	outline: none;
+}
+
+	.agileits_w3layouts_tab2 input[type="email"]:focus, .agileits_w3layouts_tab2 input[type="password"]:focus, .creditly-wrapper .form-control:focus {
+		border-color: #66afe9;
+		outline: 0;
+	}
+
+.agileits_w3layouts_tab2 input[type="submit"] {
+	display: block;
+	position: relative;
+	padding: 6px 50px 11px;
+	letter-spacing: 3px;
+	background: #1adeed;
+	font-size: 1.5em;
+	color: #fff;
+	border: 1px solid #1adeed;
+	outline: none;
+	text-transform: uppercase;
+	cursor: pointer;
+}
+
+	.agileits_w3layouts_tab2 input[type="submit"]:hover {
+		background: #fff;
+		color: #212121;
+		border: 1px solid #e7e7e7;
+	}
+
+.agileinfo_main_grid_left_grid h3 {
+	font-size: 1.3em;
+	color: #fff;
+}
+
+.agileinfo_main_grid_left_grid ul {
+	margin-top: 1.5em;
+}
+
+	.agileinfo_main_grid_left_grid ul li {
+		display: inline-block;
+		color: #fff;
+		font-weight: bold;
+		font-size: 2em;
+		vertical-align: top;
+	}
+
+		.agileinfo_main_grid_left_grid ul li span {
+			display: block;
+			font-size: .5em;
+			color: #999;
+		}
+
+		.agileinfo_main_grid_left_grid ul li:first-child {
+			width: 70%;
+			border-right: 1px solid #999;
+		}
+
+		.agileinfo_main_grid_left_grid ul li:last-child {
+			padding-left: 1em;
+			text-align: right;
+		}
+
+.agile_amount {
+	padding: 1em 2em;
+	background: #f71926;
+}
+
+	.agile_amount h3 {
+		font-size: 1.3em;
+		color: #fff;
+	}
+
+	.agile_amount h4 {
+		font-size: 2em;
+		color: #fff;
+		font-weight: bold;
+	}
+
+	.agile_amount p {
+		font-size: 1em;
+		color: #1adeed;
+		line-height: 1.8em;
+	}
+
+
+img.pp-img {
+	width: 65%;
+}
+
+.tab-grid p {
+	color: #8B8B8B;
+	font-size: 0.95em;
+	line-height: 1.8em;
+	font-weight: 400;
+	margin: 10px 0;
+}
+
+a.btn.btn-primary {
+	background-color: #3a5795;
+	font-family: 'Open Sans', sans-serif;
+	color: #fff;
+	border: none;
+}
+
+
+
+.vertical_post h5 {
+	color: #212121;
+	font-size: 18px;
+	margin: 0 0 18px 0;
+	letter-spacing: 1px;
+}
+
+.swit-radio label {
+	font-size: 16px;
+	color: #696969;
+	padding: 0px 0 0 10px;
+	font-weight: 100;
+}
+
+.radio_one:first-child {
+	margin-left: 0;
+	margin: 0;
+}
+
+.radio_one {
+	padding-left: 22px;
+	line-height: 28px;
+	color: #404040;
+	cursor: pointer;
+}
+
+.radio_one {
+	position: relative;
+	display: inline-block;
+	margin-left: 15px;
+}
+
+.section_room_pay select {
+	padding: 6px 10px;
+	width: 33%;
+	border: none;
+	background: none;
+	border: 1px solid #E6E4E4;
+	color: #D2D1D1;
+	outline: none;
+	font-size: 16px;
+	margin-bottom: 0;
+	background: url(../images/arrow.png) no-repeat 96% center #ffffff;
+	background-size: 4% !important;
+	-webkit-appearance: none;
+}
+
+select.form-control.option-w3ls {
+	width: 100%;
+	padding: 1em 1em 1em 1em;
+	font-size: 0.8em;
+	margin: 0.5em 0;
+	outline: none;
+	color: #212121;
+	border: none;
+	border: 1px solid #ccc;
+	letter-spacing: 1px;
+	text-align: left;
+}
+
+.checkout-right-basket span {
+	margin-left: 1em;
+}
+
+.check_box_one {
+	float: left;
+	width: 22%;
+	margin-bottom: 10px;
+}
+
+.vertical_post form input[type="submit"]:hover {
+	background: #fa1818;
+}
+
+.vertical_post form input[type="submit"] {
+	background:#3399cc;
+	color: #FFFFFF;
+	text-align: center;
+	padding: 10px 0;
+	border: none;
+	font-size: 16px;
+	outline: none;
+	width: 22%;
+	cursor: pointer;
+	font-weight: 600;
+	margin-top: 30px;
+	transition: 0.5s all;
+	-webkit-transition: 0.5s all;
+	-moz-transition: 0.5s all;
+	-o-transition: 0.5s all;
+	-ms-transition: 0.5s all;
+}
+
+.form-control {
+	border-radius: 0;
+}
+
+.btn-primary {
+	color: #fff;
+	background-color: #3399cc;
+	border-color: #3399cc;
+	border-radius: 0;
+}
+
+button.submit.check_out {
+	display: block;
+	position: relative;
+	padding: 11px 30px;
+	letter-spacing: 1px;
+	background: #3399cc;
+	font-size: 1.2em;
+	color: #fff;
+	font-weight: 500;
+	border: none;
+	outline: none;
+	transition: 0.5s all;
+	-webkit-transition: 0.5s all;
+	-moz-transition: 0.5s all;
+	-o-transition: 0.5s all;
+	-ms-transition: 0.5s all;
+	text-transform: uppercase;
+}
+/*-- //Pay-page --*/
+
+/*-- //cart --*/
+.column div.agile_top_brand_left_grid {
+	position: relative;
+	margin: 0;
+}
+
+.agile_top_brand_left_grid figure {
+	margin: 0;
+	padding: 0;
+	background: transparent;
+	overflow: hidden;
+	z-index: 0;
+}

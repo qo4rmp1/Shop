@@ -1,0 +1,140 @@
+﻿@model ECApplication.Models.ViewModels.OrderHistoryVM
+@using ECApplication.Models
+
+<div>
+	<h4>明細</h4>
+	<table class="timetable_sub">
+		<thead>
+			<tr>
+				<th>SL No.</th>
+				<th>產品圖片</th>
+				<th>產品名稱</th>
+				<th>單價</th>
+				<th>數量</th>
+				<th>小計</th>
+				<th>Remove</th>
+			</tr>
+		</thead>
+		@{
+			OrderHeader Oh = Model.Oh;
+			List<OrderDetail> orderDetails = Model.Ods;
+		}
+		<tbody>
+			@if (Model != null)
+			{
+				int i = 0;
+
+				for (i = 0; i < orderDetails.Count; i++)
+				{
+					<tr class="rem@(i + 1)">
+						<td class="invert">@(i + 1)</td>
+						<td class="invert-image"><a href="@Url.Action("Detail", "Products", new { id = orderDetails[i].ProductId })"><img src="@Url.Action("GetImage", "Products", new { id= orderDetails[i] .ProductId})" alt="" class="img-responsive"></a></td>
+
+						<td class="invert">@Html.DisplayFor(modelItem => orderDetails[i].Product.ProductName) </td>
+
+						<td class="invert">NT$ @Html.LabelFor(modelItem => orderDetails[i].Product.Price)</td>
+						<td class="invert">
+							<div class="quantity">
+								<div class="quantity-select">
+									@Html.LabelFor(modelItem => orderDetails[i].Amount)
+									@*<div class="entry value-minus">&nbsp;</div>
+										<div class="entry value">@Html.DropDownListFor(modelItem => orderDetails[i].Amount, ddlAmountList)</div>
+										<div class="entry value-plus active">&nbsp;</div>*@
+								</div>
+							</div>
+						</td>
+						<td>@*NT$ @(orderDetails[i].Product.Price * orderDetails[i].Amount )*@</td>
+					</tr>
+				}
+				<tr>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th>總價</th>
+					<th id="subtotal"> NT$ @Html.LabelFor(modeoItem => Model.Oh.TotalPrice)</th>
+				</tr>
+			}
+		</tbody>
+	</table>
+	<table class="table">
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => Oh.BuyOn)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => Oh.Id)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => Oh.TotalPrice)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => Oh.UserName)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => Oh.ContactName)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => Oh.ContactPhoneNo)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => Oh.ContactCity)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => Oh.ContactStreet1)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => Oh.ContactStreet2)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => Oh.ContactZipCode)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => Oh.Memo)
+			</th>
+			<th></th>
+		</tr>
+		<tr>
+			<td>
+				@Html.DisplayFor(modelItem => Oh.BuyOn)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => Oh.Id)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => Oh.TotalPrice)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => Oh.UserName)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => Oh.ContactName)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => Oh.ContactPhoneNo)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => Oh.ContactCity)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => Oh.ContactStreet1)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => Oh.ContactStreet2)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => Oh.ContactZipCode)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => Oh.Memo)
+			</td>
+		</tr>
+
+	</table>
+
+</div>
+<p>
+	@Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+	@Html.ActionLink("Back to List", "Index")
+</p>

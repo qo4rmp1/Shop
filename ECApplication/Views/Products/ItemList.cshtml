@@ -1,0 +1,6 @@
+﻿@model IEnumerable<ECApplication.Models.Product>
+
+@*非管理者顯示商品列表*@
+@_ProductSetBlockPart.ProductSetBlock(Url, Model, 3)
+
+@Html.Partial("_Pager", Model)

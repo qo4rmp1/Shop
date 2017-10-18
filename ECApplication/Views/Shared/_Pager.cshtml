@@ -1,0 +1,24 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+
+<div class="col-lg-12" style="text-align:center;">
+	@{
+		var actionName = "ItemList";
+		var areaName = "";
+	}
+	@if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+	{
+		actionName = "Batch";
+		areaName = "back";
+	}
+
+	@Html.PagedListPager(Model as IPagedList, (p) => Url.Action(actionName, new
+{
+	area = areaName,
+	categoryId = Request.QueryString["categoryId"],
+	pageNo = p,
+	search = Request.QueryString["search"],
+	activeFilter = ViewBag.ActiveFilterVal
+
+}), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing("#Div_ItemList"))
+</div>

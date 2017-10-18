@@ -1,0 +1,11 @@
+﻿@model Nullable<int>
+
+<div class="rating1">
+	<span class="starRating">
+		@for (int i = 1; i <= 5; i++)
+		{
+			<input id="rating@(i)" type="radio" name="rating" value="i">
+			<label for="rating@(i)">i</label>
+		}
+	</span>
+</div>

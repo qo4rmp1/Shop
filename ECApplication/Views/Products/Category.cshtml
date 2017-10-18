@@ -1,0 +1,25 @@
+﻿@model List<ECApplication.Models.ProductCategory>
+
+@{
+	ViewBag.Title = "Index";
+	var ajaxOption_Get = new AjaxOptions()
+	{
+		UpdateTargetId = "Div_Products",
+		InsertionMode = InsertionMode.Replace
+	};
+}
+
+
+<h2>@Html.DisplayNameFor(model => model[0])</h2>
+
+<ul>
+	@foreach (var item in Model)
+	{
+		<li>
+			@*@Html.ActionLink(item.Name, "List", new { categoryId = item.Id })*@
+			@Ajax.ActionLink(item.Name, "List", new { categoryId = item.Id }, ajaxOption_Get)
+		</li>
+	}
+</ul>
+
+<div id="Div_Products"></div>

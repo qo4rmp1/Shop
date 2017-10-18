@@ -1,0 +1,142 @@
+﻿@model ECApplication.Models.Product
+
+@{
+	ViewBag.Title = "編輯商品";
+}
+
+<div class="div_Bak">
+	@using (Html.BeginForm())
+	{
+		@Html.AntiForgeryToken()
+
+		<div class="form-horizontal container">
+
+			@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+			@Html.HiddenFor(model => model.ProductId)
+
+			<div class="form-group">
+				@Html.LabelFor(model => model.ProductName, htmlAttributes: new { @class = "control-label col-md-2" })
+				<div class="col-md-10">
+					@Html.EditorFor(model => model.ProductName, new { htmlAttributes = new { @class = "form-control" } })
+					@Html.ValidationMessageFor(model => model.ProductName, "", new { @class = "text-danger" })
+				</div>
+			</div>
+
+			<div class="form-group">
+				@Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
+				<div class="col-md-10">
+					@Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+					@Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+				</div>
+			</div>
+
+			<div class="form-group">
+				@Html.LabelFor(model => model.Active, htmlAttributes: new { @class = "control-label col-md-2" })
+				<div class="col-md-10">
+					@*<div class="checkbox">
+						@Html.CheckBoxFor(m => m.Active)
+						@Html.LabelFor(m => m.Active)
+					</div>*@
+						@*@Html.CheckBoxFor(model => model.Active, new { htmlAttributes = new { @class = "form-control" } })*@
+						@Html.EditorFor(model => model.Active, new { htmlAttributes = new { @class = "form-control" } })
+						@*@Html.ValidationMessageFor(model => model.Active, "", new { @class = "text-danger" })*@
+					@*<div class="checkbox"></div>*@
+				</div>
+			</div>
+
+			<div class="form-group">
+				@Html.LabelFor(model => model.Stock, htmlAttributes: new { @class = "control-label col-md-2" })
+				<div class="col-md-10">
+					@Html.EditorFor(model => model.Stock, new { htmlAttributes = new { @class = "form-control" } })
+					@Html.ValidationMessageFor(model => model.Stock, "", new { @class = "text-danger" })
+				</div>
+			</div>
+
+			<div class="form-group">
+				@Html.LabelFor(model => model.CategoryId, "CategoryId", htmlAttributes: new { @class = "control-label col-md-2" })
+				<div class="col-md-10">
+					@Html.EditorFor(model => model.CategoryId, new { htmlAttributes = new { @class = "form-control" } })
+					@Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
+				</div>
+			</div>
+
+			<div class="form-group">
+				@Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+				<div class="col-md-10">
+					@Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+					@Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+				</div>
+			</div>
+
+			<div class="form-group">
+				@Html.LabelFor(model => model.PhotoFile, htmlAttributes: new { @class = "control-label col-md-2" })
+				<div class="col-md-10">
+					<img id="Img_Product" src="@Url.Content("~/images/" + Model.FileName)" alt="" />
+					<input type="file" name="Image" id="Image" formenctype="multipart/form-data" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="col-md-offset-2 col-md-10">
+					<input type="button" value="上傳" id="Btn_EditImage" class="btn btn-primary" />
+					<input type="button" value="取消" class="btn btn-default" />
+				</div>
+			</div>
+
+			@*new { enctype = "multipart/form-data" }*@
+			@*<div class="form-group">
+					<div class="col-md-offset-2 col-md-10 div_Right">
+						<input type="submit" value="更新商品" class="btn btn-default" />
+					</div>
+				</div>*@
+
+			<div class="div_Right">
+				<input type="submit" value="更新商品" />
+			</div>
+
+			<div class="div_Left">
+				<a href="@Url.Action("Index", "Products", new { area = "back", categoryId = Model.CategoryId })">返回商品列表</a>
+			</div>
+			<div class="div_Left">
+				<a href="@Url.Action("Delete", "Products", new { area = "back", categoryId = Model.CategoryId })">刪除</a>
+			</div>
+		</div>
+	}
+</div>
+
+@{
+	var productId = Model.ProductId;
+}
+<script>
+	$(function () {
+		$('#Btn_EditImage').on('click', function () {
+			var formData = new FormData();
+
+			var fileLeng = document.getElementById('Image').files.length;
+			if (fileLeng > 0) {
+				formData.append('key', document.getElementById('Image').files[0]);
+			}
+
+			$.ajax({
+				url: '@Url.Action("EditImage", "Products", new { area = "back", id = productId })',
+				type: 'POST',
+				data: formData,
+				contentType: false,
+				processData: false,
+				success: function (data) {
+					if (data.length > 0) {
+						$('#Img_Product').attr('src', data);
+					} else {
+						$('#Img_Product').attr('src', '');
+						alert('找不到此圖片');
+					}
+				},
+				error: function (jqXHR) {
+					$('#Img_Product').attr('src', '');
+					alert('找不到此圖片');
+				}
+
+			});
+		});
+	});
+</script>

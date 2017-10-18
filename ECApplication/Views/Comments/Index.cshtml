@@ -1,0 +1,65 @@
+﻿@model IEnumerable<ECApplication.Models.Comment>
+
+@{
+	var ajaxOption_Get = new AjaxOptions
+	{
+		UpdateTargetId = "Tr_Row",
+		InsertionMode = InsertionMode.Replace
+	};
+
+	var ajaxOption_Post = new AjaxOptions
+	{
+		OnSuccess = "DeleteCommentSuccess",
+		OnFailure = "DeleteCommentFailure",
+		HttpMethod = "POST"
+	};
+}
+
+<script>
+	function DeleteCommentSuccess() {
+		alert('OK');
+		location.reload();}
+	function DeleteCommentFailure(xhr) { alert('狀態' + xhr.status);}
+</script>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Content)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Star)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr id="Tr_Row">
+        <td>
+            @Html.DisplayFor(modelItem => item.Content)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreateTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Star)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserName)
+        </td>
+        <td>
+			@if (User.Identity.Name.Equals(item.UserName))
+			{
+				@Ajax.ActionLink("Edit", "Edit", new { id = item.Id }, ajaxOption_Get)
+				@Ajax.ActionLink("刪除", "Delete", new { id = item.Id }, ajaxOption_Post)
+			}
+        </td>
+    </tr>
+}
+
+</table>

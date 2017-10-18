@@ -1,0 +1,68 @@
+﻿.div_Bak {
+	padding: 5em 0;
+}
+.div_Right a, .div_Right input[type=submit] {
+	position: relative;
+	padding: 10px 20px;
+	letter-spacing: 1px;
+	background: #3399cc;
+	font-size: 1.2em;
+	color: #fff;
+	font-weight: 500;
+	border: none;
+	outline: none;
+	text-align: center;
+	margin-top: 15px;
+	border: 1px solid transparent;
+	border-radius: 4px;
+}
+.div_Left {
+	float: left;
+	margin: 2em 0 0 5em;
+}
+	.div_Left a {
+		padding: 10px 20px;
+		letter-spacing: 1px;
+		font-weight: 500;
+		color: #fff;
+		background: #3399cc;
+		font-size: 1.2em;
+		text-decoration: none;
+		border: 1px solid transparent;
+		border-radius: 4px;
+	}
+.div_Right{
+	text-align: center;
+	float: right;
+	margin: 0 5em 0 0;
+}
+
+	.s_btn, .s_link {
+		font-size: 14px;
+		color: #fff;
+		background: #3399cc;
+		text-decoration: none;
+		position: relative;
+		border: none;
+		border-radius: 0;
+		width: 100%;
+		text-transform: uppercase;
+		padding: .5em 0;
+		outline: none;
+		cursor: pointer;
+		-webkit-transition: .5s ease-in;
+		display: block;
+	}
+
+		.s_btn:hover, .s_link:hover {
+			background: #fe9126;
+		}
+
+@media (max-width: 384px) {
+	.div_Left {
+		margin: 1.8em 0 0 1em;
+	}
+	.div_Right{
+		margin: 0 1em 0 0;
+	}
+}

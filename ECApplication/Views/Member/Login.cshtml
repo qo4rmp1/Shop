@@ -1,0 +1,40 @@
+﻿@model ECApplication.Models.ViewModels.MemberLoginVM
+
+@{
+    ViewBag.Title = "Login";
+}
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+
+	<!-- login -->
+	<div class="login">
+		<div class="container">
+			<h2>Login Form</h2>
+
+			<div class="login-form-grids animated wow slideInUp" data-wow-delay=".5s">
+				@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+				<form>
+					@Html.EditorFor(m => m.Username, new { htmlAttributes = new { @class = "for-control", placeholder = "Username" } })
+					@Html.ValidationMessageFor(m => m.Username, "", new { @class = "text-danger" })
+
+					@Html.EditorFor(m => m.Password, new { htmlAttributes = new { @class = "for-control", placeholder = "Password" } })
+					@Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+					@*<input type="email" placeholder="Email Address" required=" ">
+					<input type="password" placeholder="Password" required=" ">*@
+					<div class="forgot">
+						<a href="#">Forgot Password?</a>
+					</div>
+					<input type="submit" value="Login">
+				</form>
+			</div>
+			<h4>For New People</h4>
+			<p><a href="@Url.Action("Register", "Member")">Register Here</a> (Or) go back to <a href="@Url.Action("Index", "Home")">Home<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a></p>
+		</div>
+	</div>
+	<!-- //login -->
+}
+@*載入驗證所需的Javascript*@
+@section Scripts {
+	@Scripts.Render("~/bundles/jqueryval")
+}

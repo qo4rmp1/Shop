@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c528219234224a0dac9037b69c581f63" Name="Diagram1">
+        <EntityTypeShape EntityType="ECDBModel.Cart" Width="1.5" PointX="6.875" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECDBModel.Comment" Width="1.5" PointX="4.375" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECDBModel.Member" Width="1.5" PointX="0.75" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECDBModel.OrderDetail" Width="1.5" PointX="9.125" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECDBModel.OrderHeader" Width="1.5" PointX="9.125" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECDBModel.Product" Width="1.5" PointX="4.375" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECDBModel.ProductCategory" Width="1.5" PointX="4.375" PointY="0.5" IsExpanded="true" />
+        <AssociationConnector Association="ECDBModel.fk_Cart_ProductId" ManuallyRouted="false" />
+        <AssociationConnector Association="ECDBModel.FK_Comment_ProductId" ManuallyRouted="false" />
+        <AssociationConnector Association="ECDBModel.FK_Comment_UserName" ManuallyRouted="false" />
+        <AssociationConnector Association="ECDBModel.FK_OrderHeader_UserName" ManuallyRouted="false" />
+        <AssociationConnector Association="ECDBModel.FK_OrderDetail_OrderHeaderId" ManuallyRouted="false" />
+        <AssociationConnector Association="ECDBModel.FK_ProductId" ManuallyRouted="false" />
+        <AssociationConnector Association="ECDBModel.FK_Product_CategoryId" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

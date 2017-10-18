@@ -1,0 +1,78 @@
+﻿@section breadcrumb{
+	<li class="active"><a href="@Url.Action("List")">@(ViewBag.Title)</a></li>
+}
+@{
+	ViewBag.Title = "商品";
+
+	if (IsAjax)
+	{
+		Layout = "";
+	}
+}
+
+<script>
+	$(function () {
+		$('#Ddl_SortBy').on('change', getItemList);
+		$('#Ddl_Desc').on('change', getItemList);
+	});
+
+	function getItemList() {
+		var sortBy = $('#Ddl_SortBy').val();
+		var desc = $('#Ddl_Desc').val();
+
+		$.ajax({
+			url: '@Html.Raw(Url.Action("ItemList", "Products", new
+		 {
+			 categoryId = Request.QueryString["categoryId"],
+			 search = Request.QueryString["search"]
+		}))',
+			type: 'get',
+			data: { sortBy: sortBy, desc: desc },
+			datatype: 'json',
+			success: function (data) {
+				alert('success');
+				$('#Div_ItemList').html(data);
+			},
+			error: function () {
+				alert('error');
+			}
+		});
+	}
+</script>
+<!--- groceries --->
+<div class="products">
+	<div class="container">
+		<div class="col-md-12 products-right">
+			<div class="products-right-grid">
+				<div class="products-right-grids">
+					<div class="sorting">
+						<select name="desc" id="Ddl_Desc" class="frm-field required sect">
+							<option value="false"><i class="fa fa-arrow-right" aria-hidden="true"></i>低→高</option>
+							<option value="true"><i class="fa fa-arrow-right" aria-hidden="true"></i>高→低</option>
+						</select>
+					</div>
+					<div class="sorting-left">
+						<select name="sortBy" id="Ddl_SortBy" class="frm-field required sect">
+							<option value="default"><i class="fa fa-arrow-right" aria-hidden="true"></i>預設</option>
+							<option value="price"><i class="fa fa-arrow-right" aria-hidden="true"></i>價錢</option>
+						</select>
+					</div>
+					<div class="clearfix"> </div>
+				</div>
+			</div>
+
+			<div id="Div_ItemList">
+
+				@Html.Action("ItemList", "Products", new
+		   {
+			   categoryId = Request.QueryString["categoryId"],
+			   search = Request.QueryString["search"],
+			   activeFilter = ViewBag.ActiveFilterVal,
+
+		   })
+			</div>
+		</div>
+		<div class="clearfix"> </div>
+	</div>
+</div>
+<!--- groceries --->

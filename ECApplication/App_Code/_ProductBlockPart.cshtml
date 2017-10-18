@@ -1,0 +1,98 @@
+﻿@using System.Web.Mvc
+@using System.Web.Mvc.Ajax
+@using ECApplication.Models
+@using System.Collections.Generic;
+@using System.Globalization;
+@using System.Web.Mvc.Html;
+@using System.Web.Routing;
+
+@helper ProductBlock(UrlHelper urlHelper, Product product)
+{
+
+var ajaxOptionPost = new AjaxOptions()
+{
+	OnSuccess = "AddToCartSuccess",
+	OnFailure = "AddtoCartFailure",
+	HttpMethod = "Post"
+};
+	<style>
+		.link_ProductItem {
+			font-size: 14px;
+			color: #fff;
+			background: #3399cc;
+			text-decoration: none;
+			position: relative;
+			border: none;
+			border-radius: 0;
+			width: 100%;
+			text-transform: uppercase;
+			padding: .5em 0;
+			outline: none;
+			cursor: pointer;
+			-webkit-transition: .5s ease-in;
+			display: block;
+			text-align: center;
+			margin: 1.5em auto 1em;
+			width: 77%;
+		}
+
+			.link_ProductItem:hover {
+				background: #fe9126;
+			}
+	</style>
+	<script>
+		function AddToCartSuccess() {
+			alert("已加入購物車");
+		}
+
+		function AddtoCartFailure(xhr) {
+			alert("加入購物車發生錯誤(狀態碼:" + xhr.status + ")");
+		}
+
+		@*$(function () {
+		$('#Btn_AddToCart').on('click', function (e) {
+			e.preventDefault();
+			$.ajax({
+				url: '@Url.Action("AddToCart", "Cart", new { productId = Model.ProductId })',
+				type: 'POST',
+				success:function(data){
+					alert("已加入購物車");
+				},
+				error: function(xhr){
+					alert("加入購物車發生錯誤(狀態碼:" + xhr.status + ")");
+				}
+			});
+		});
+	});*@
+	</script>
+
+var Url = urlHelper.Action("Detail", "Products", new { id = product.ProductId });
+var ImgUrl = urlHelper.Content("/images/" + product.FileName);
+var CartUrl = urlHelper.Action("AddToCart", "Cart", new { productId = product.ProductId });
+
+<div class="hover14 column">
+		<div class="agile_top_brand_left_grid">
+			<div class="agile_top_brand_left_grid_pos">
+				<img src="images/offer.png" alt="" class="img-responsive" />
+			</div>
+			<div class="agile_top_brand_left_grid1">
+				<figure>
+					<div class="snipcart-item block">
+						<div class="snipcart-thumb">
+							<a href="@(Url)">
+								<img src="@(ImgUrl)" alt="" class="img-responsive" title="" />
+								@*<img src="@Url.Action("GetImage", "Products", new { id = Model.ProductId})" class="img-responsive" title=""/>*@
+							</a>
+							<p>@(product.ProductName)</p>
+							<h4>
+								$@(product.Price)<span>$55.00 </span>
+							</h4>
+						</div>
+						@*@Ajax.ActionLink("加入購物車", "AddToCart", "Cart", new { productId = product.ProductId }, ajaxOptionPost, new { @class = "button" })*@
+						<a data-ajax="true" data-ajax-failure="AddtoCartFailure" data-ajax-method="Post" data-ajax-success="AddToCartSuccess" href="@(CartUrl)" class="link_ProductItem">加入購物車</a>
+					</div>
+				</figure>
+			</div>
+		</div>
+	</div>
+}

@@ -1,0 +1,32 @@
+﻿@using System.Web.Mvc
+@using System.Web.Mvc.Ajax
+@using ECApplication.Models
+@using System.Collections.Generic;
+@using System.Globalization;
+@using System.Web.Mvc.Html;
+@using System.Web.Routing;
+
+@helper ProductSetBlock(UrlHelper urlHelper, IEnumerable<Product> products, int cols)
+{
+var i = 0;
+var j = 0;
+
+var _class = "col-md-" + 12/ cols + " top_brand_left";
+var productList = products.ToList();
+
+for (i = 0; i < productList.Count; i = i + cols)
+{
+	j = i;
+		<div class="agile_top_brands_grids">
+
+			@while (j < productList.Count && j < i + cols)
+			{
+				<div class= @(_class)>
+					@_ProductBlockPart.ProductBlock(urlHelper, productList[j])
+				</div>
+				j++;
+			}
+			<div class="clearfix"> </div>
+		</div>
+	}
+}

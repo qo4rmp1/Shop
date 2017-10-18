@@ -1,0 +1,36 @@
+﻿@*@{
+	var Categorys = ViewBag.Categorys as List<ECApplication.Models.ProductCategory>;
+	var SelectItems = new List<SelectListItem>();
+
+	foreach (var item in Categorys)
+	{
+		SelectItems.Add(new SelectListItem() { Text = item.Name, Value = item.Id.ToString() });
+	}
+}
+
+@Html.DropDownList("", SelectItems, htmlAttributes: new { @class = "form-control" })*@
+
+@*@Html.DropDownList("", ViewBag.Categorys as SelectList, "無分類", new { @class = "form-control" })*@
+@model int?
+@using ECApplication.Models
+@{
+	SelectList selectList = null;
+
+	if (Model.HasValue)
+	{
+		selectList = new SelectList(ViewBag.Categorys as List<ProductCategory>, "Id", "Name", Model);
+	}
+	else
+	{
+		selectList = new SelectList(ViewBag.Categorys as List<ProductCategory>, "Id", "Name");
+	}
+	
+	@Html.DropDownList("", selectList, "全部商品", new { @class = "form -control" })
+}
+
+@*@model string*@
+	@*@if (Model.HasValue)
+	{
+		var item = new SelectList(ViewBag.Categorys, "Id", "Name", Model);
+		@Html.DropDownList("", item, "無分類", new { @class = "form-control" })
+	}*@

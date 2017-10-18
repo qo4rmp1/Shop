@@ -1,0 +1,104 @@
+﻿@model IEnumerable<ECApplication.Models.OrderHeader>
+
+@{
+	ViewBag.Title = "Histories";
+	var ajaxOption_Get = new AjaxOptions()
+	{
+		UpdateTargetId = "Div_OrderDetails",
+		InsertionMode = InsertionMode.Replace
+	};
+}
+
+<h2>Histories</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+		<th>
+			@Html.DisplayNameFor(model => model.BuyOn)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.Id)
+		</th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalPrice)
+        </th>
+		@*<th>
+			@Html.DisplayNameFor(model => model.UserName)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.ContactName)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.ContactPhoneNo)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.ContactCity)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.ContactStreet1)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.ContactStreet2)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.ContactZipCode)
+		</th>
+        <th>
+            @Html.DisplayNameFor(model => model.Memo)
+        </th>*@
+        <th></th>
+    </tr>
+
+	@if (Model != null)
+	{
+foreach (var item in Model) {
+    <tr>
+		<td>
+			@Html.DisplayFor(modelItem => item.BuyOn)
+		</td>
+		<td>
+			@Html.DisplayFor(modelItem => item.Id)
+		</td>
+		<td>
+			@Html.DisplayFor(modelItem => item.TotalPrice)
+		</td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContactName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContactPhoneNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContactCity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContactStreet1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContactStreet2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContactZipCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Memo)
+        </td>*@
+        <td>
+			@Ajax.ActionLink("Show Detail", "History", new { headerId = item.Id}, ajaxOption_Get, new { })
+            @*@Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })*@
+        </td>
+    </tr>
+
+		}
+	}
+
+</table>
+<div id="Div_OrderDetails"></div>

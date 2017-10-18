@@ -1,0 +1,200 @@
+﻿@model ECApplication.Models.Product
+
+@{
+	var ajaxOptionPost = new AjaxOptions()
+	{
+		OnSuccess = "AddToCartSuccess",
+		OnFailure = "AddtoCartFailure",
+		HttpMethod = "Post"
+	};
+}
+<script>
+	function AddToCartSuccess() {
+		alert("已加入購物車");
+	}
+
+	function AddtoCartFailure(xhr) {
+		alert("加入購物車發生錯誤(狀態碼:" + xhr.status + ")");
+	}
+
+	@*$(function () {
+		$('#s_link').on('click', function (e) {
+			e.preventDefault();
+			$.ajax({
+				url: '@Url.Action("AddToCart", "Cart", new { productId = Model.ProductId })',
+				type: 'POST',
+				success:function(data){
+					alert("已加入購物車");
+				},
+				error: function(xhr){
+					alert("加入購物車發生錯誤(狀態碼:" + xhr.status + ")");
+				}
+			});
+		});
+	});*@
+</script>
+<link href="~/css/Style_Reviews.css" rel="stylesheet" />
+<style>
+	.rating1_Reviews {
+		outline: none;
+		padding: 10px 0em;
+		width: 49.35%;
+		font-size: 15px;
+		color: #FDA30E;
+		margin: 0;
+	}
+
+	.bootstrap-tab-text-grid-right {
+		width: 100%;
+	}
+</style>
+
+@*<h2>@Html.DisplayFor(m => m.ProductName)</h2>
+
+	<fieldset>
+		<legend>@Html.DisplayNameFor(m => m)</legend>
+
+
+		<div class="display-label">
+			@Html.DisplayNameFor(model => model.Description)
+		</div>
+		<div class="display-field">
+			@Html.DisplayFor(m => m.Description)
+		</div>
+		<div class="display-label">
+			@Html.DisplayNameFor(model => model.Price)
+		</div>
+		<div class="display-field">
+			@Html.DisplayFor(m => m.Price)
+		</div>
+	</fieldset>
+
+	<p>
+		@Ajax.ActionLink("加入購物車", "AddToCart", "Cart", new { productId = Model.ProductId }, ajaxOption)
+	</p>
+
+	@Html.Action("Index", "Comments", new { productId = Model.ProductId })
+
+	@if (ViewBag.AlreadyBuy && ViewBag.AlreadyCreate == false)
+	{
+		@Html.Action("Create", "Comments", new { productId = Model.ProductId })
+	}*@
+
+<div class="agileinfo_single">
+	<div class="col-md-4 agileinfo_single_left">
+		<img width="200" src="@Url.Action("GetImage", "Products", new { id = Model.ProductId})" class="img-responsive" />
+
+		@*<img id="example" src="images/si1.jpg" alt="" class="img-responsive">*@
+	</div>
+	<div class="col-md-8 agileinfo_single_right">
+		<h2>@Html.DisplayFor(m => m.ProductName)</h2>
+		<div class="w3agile_description">
+			<h4>@Html.DisplayNameFor(model => model.Description) :</h4>
+			<p>
+				@Html.DisplayFor(m => m.Description)
+			</p>
+		</div>
+		<div class="snipcart-item block">
+			<div class="snipcart-thumb agileinfo_single_right_snipcart">
+				<h4 class="m-sing">$21.00 <span>$@Html.DisplayFor(m => m.Price)</span></h4>
+			</div>
+			<div class="snipcart-details agileinfo_single_right_details">
+				@Ajax.ActionLink("加入購物車", "AddToCart", "Cart", new { productId = Model.ProductId }, ajaxOptionPost, new { @class = "s_link" })
+			</div>
+		</div>
+	</div>
+	<div class="clearfix"> </div>
+
+
+	<div class="bootstrap-tab animated wow slideInUp animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: slideInUp;">
+		<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+			<ul id="myTab" class="nav nav-tabs" role="tablist">
+				<li role="presentation" class="active"><a href="#profile" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile">Reviews(@(Model.Comment.Count))</a></li>
+			</ul>
+			@{
+				var Comments = Model.Comment.ToList();
+			}
+			<div id="myTabContent" class="tab-content">
+				<div role="tabpanel" class="tab-pane fade bootstrap-tab-text active in" id="profile" aria-labelledby="profile-tab">
+					<div class="bootstrap-tab-text-grids">
+
+						@for (int i = 0; i < Comments.Count; i++)
+						{
+							<div class="bootstrap-tab-text-grid">
+								<div class="bootstrap-tab-text-grid-right">
+									<ul>
+										<li><a href="#">@(Comments[i].Member.UserName)</a></li>
+										<li>
+											@Html.DisplayFor(modelItem => Comments[i].Star)
+											@*<div class="rating1_Reviews">
+												<span class="starRating">
+													<input id="rating5" type="radio" name="rating" value="5" checked="@(Comments[i].Star == 5)">
+													<label for="rating5">5</label>
+													<input id="rating4" type="radio" name="rating" value="4" checked="@(Comments[i].Star == 4)">
+													<label for="rating4">4</label>
+													<input id="rating3" type="radio" name="rating" value="3" checked="@(Comments[i].Star == 3)">
+													<label for="rating3">3</label>
+													<input id="rating2" type="radio" name="rating" value="2" checked="@(Comments[i].Star == 2)">
+													<label for="rating2">2</label>
+													<input id="rating1" type="radio" name="rating" value="1" checked="@(Comments[i].Star == 1)">
+													<label for="rating1">1</label>
+												</span>
+											</div>*@
+										</li>
+									</ul>
+									<p>
+										@(Comments[i].Content)
+									</p>
+								</div>
+								<div class="clearfix"> </div>
+							</div>
+						}
+						@if (ViewBag.AlreadyBuy && ViewBag.AlreadyCreate == false)
+						{
+							<div class="add-review">
+								<h4>add a review</h4>
+								@using (Html.BeginForm("Create", "Comments", FormMethod.Post))
+								{
+									@Html.AntiForgeryToken()
+									@*<input type="text" value="Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name';}" required="">*@
+									<div class="rating1_Reviews">
+										<span class="starRating">
+											<input id="rating5" type="radio" name="star" value="5">
+											<label for="rating5">5</label>
+											<input id="rating4" type="radio" name="star" value="4">
+											<label for="rating4">4</label>
+											<input id="rating3" type="radio" name="star" value="3">
+											<label for="rating3">3</label>
+											<input id="rating2" type="radio" name="star" value="2">
+											<label for="rating2">2</label>
+											<input id="rating1" type="radio" name="star" value="1">
+											<label for="rating1">1</label>
+										</span>
+									</div>
+									@*<input type="email" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}" required="">*@
+									<textarea type="text" name="Content" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Message...';}" required="">Message...</textarea>
+									<input type="submit" value="SEND">
+									@Html.Hidden("ProductId", ViewBag.ProductId as string, new { @class = "form-control" })
+								}
+							</div>
+						}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="~/js/minicart.js"></script>
+<script>
+	$(function () {
+		document.getElementsByName('star').
+	});
+	// Mini Cart
+	paypal.minicart.render({
+		action: '#'
+	});
+
+	if (~window.location.search.indexOf('reset=true')) {
+		paypal.minicart.reset();
+	}
+</script>
